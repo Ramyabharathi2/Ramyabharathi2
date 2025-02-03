@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.highlight {
+    background: #2563eb; /* Indigo-600 from Tailwind */
+    color: rgb(70, 235, 55); /* Green color for the text */
+    border-radius: 50%; /* Makes it a circle */
+    width: 30px; /* Define width */
+    height: 30px; /* Define height */
+    display: flex; /* Flexbox to center text */
+    align-items: center; /* Vertically center the text */
+    justify-content: center; /* Horizontally center the text */
+    font-size: 12px; /* Adjust font size */
+    font-weight: bold; /* Make the text bold */
+  }
+  /* Hide Scrollbars for Webkit Browsers (e.g., Chrome, Safari) */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide Scrollbars for Internet Explorer and Edge */
+.scrollbar-none {
+  -ms-overflow-style: none; /* IE and Edge */
+ /* Firefox */
+}
+
+.rbc-calendar {
+  background-color: #f9fafb;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+}
+.rbc-event {
+  background-color: #2563eb !important;
+  color: white;
+  border-radius: 4px;
+  padding: 2px;
+}
+
