@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Signup = () => {
+const AdminSignup = () => {
     const [formData, setFormData] = useState({ name: '', email: '', password: '', mobile: '' });
     const [message, setMessage] = useState({ text: '', type: '' });
     const navigate = useNavigate();
@@ -38,7 +38,7 @@ const Signup = () => {
         const url = 'http://localhost:5000/signup';
 
         try {
-            const response = await axios.post(url, {...formData,role:"user"});
+            const response = await axios.post(url, {...formData,role:"admin"});
             setMessage({ text: response.data.message, type: 'success' }); // Success Message
 
             // Reset form after successful signup
@@ -142,4 +142,4 @@ const Signup = () => {
     );
 };
 
-export default Signup;
+export default AdminSignup;

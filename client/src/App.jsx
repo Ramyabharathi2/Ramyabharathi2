@@ -33,6 +33,10 @@ import ApplicationsJob from "./pages/aplicationJobs";
 import ReceivedApplications from "./pages/ApplicationIntership";
 import EditJob from "./pages/jobEdit";
 import InternEdit from "./pages/InternEdit";
+import UserDashboard from "./pages/user/userdashboard";
+import AdminSignup from "./pages/AdminSinup";
+import Applyinternship from "./pages/user/Applyinternship";
+import ApplyInternship from "./pages/user/Applyinternship";
 
 
 
@@ -45,6 +49,15 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+
+        <Route path="/userDashboard" element={<UserDashboard />} />
+        <Route path="/Interapply/:id" element={<ApplyInternship />} />
+
+
+
+                  {/* Admin Routes */}
+
+        <Route path="/admin/register" element={<AdminSignup />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/Interviewschedule" element={<InterviewSchedule />} />
         <Route path ="/profile"element={<Profile/>} />

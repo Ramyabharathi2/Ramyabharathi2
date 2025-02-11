@@ -31,7 +31,14 @@ const Login = () => {
 
                 // localStorage.setItem("userData")
                setMessage({ text: response.data.message, type: 'success' }); // Success Message
-               navigate('/dashboard');
+
+               if (response.data.data.role==="user") {
+                   navigate('/userdashboard');
+                   window.location.reload()
+                }else{
+                   navigate('/dashboard');
+                   window.location.reload()
+               }
 
            } else {
             // Reset form for signup
