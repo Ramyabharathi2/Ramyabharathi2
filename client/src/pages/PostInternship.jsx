@@ -88,7 +88,7 @@ const PostInternship = () => {
     if (!formData.State.trim()) newErrors.State = "State is required.";
     if (!formData.district.trim()) newErrors.district = "District is required.";
 
-    setErrors(newErrors);
+    // setErrors(newErrors);
     return Object.keys(newErrors).length === 0; // Return true if no errors
   };
 
@@ -104,8 +104,18 @@ const PostInternship = () => {
     // Simulate API call or form submission
     setTimeout(async () => {
       setLoading(false);
+     try {
+      
       const response = await axios.post("http://localhost:5000/api/intern",formData);
+    
       alert("Internship posted successfully!");
+
+     } catch (error) {
+
+      console.log(error);
+      
+      
+     }
       // Logic to send form data to a backend API can go here
       console.log("Form Data Submitted: ", formData);
       handleclear()
@@ -412,9 +422,9 @@ const PostInternship = () => {
               <button
                 type="submit"
                 className="bg-blue-500 text-white px-6 py-3 rounded-md"
-                disabled={loading}
+                // disabled={loading}
               >
-                {loading ? "Posting Internship..." : "Post Internship"}
+                {loading ? "Posting Internship..." : "Post Internship"} 
               </button>
             </div>
           </form>

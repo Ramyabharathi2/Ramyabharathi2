@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
-const ApplyInternship = () => {
+const ApplyJob = () => {
 
-  const {id}=useParams()
-
-  const user =JSON.parse( localStorage.getItem("userData"))
-
-  console.log(user);
+   const {id}=useParams()
   
-
-
+    const user =JSON.parse( localStorage.getItem("userData"))
+  
+    console.log(user);
 
   const [formData, setFormData] = useState({
     internshipId: id,
@@ -47,7 +44,7 @@ const ApplyInternship = () => {
       return;
     }
 
-    const url = "http://localhost:5000/api/intern/apply";
+    const url = "http://localhost:5000/api/job/apply";
     const formDataToSend = new FormData();
 
     Object.keys(formData).forEach((key) => {
@@ -77,7 +74,7 @@ const ApplyInternship = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center mb-6">Apply for Internship</h1>
+      <h1 className="text-3xl font-bold text-center mb-6">Apply for JOB</h1>
       {message.text && (
         <div className={`text-center mb-4 ${message.type === "success" ? "text-green-500" : "text-red-500"}`}>
           {message.text}
@@ -85,9 +82,12 @@ const ApplyInternship = () => {
       )}
       <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Internship ID</label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">Job ID</label>
           <input type="text" name="internshipId" value={formData.internshipId} onChange={handleChange} required className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none" placeholder="Enter Internship ID" />
         </div>
+
+          {/* <input type="text" name="" value={formData.internshipId} onChange={handleChange} required className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none" placeholder="Enter Internship ID" /> */}
+          {/*  */}
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">Full Name</label>
           <input type="text" name="applicantName" value={formData.applicantName} onChange={handleChange} required className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none" placeholder="Enter your name" />
@@ -116,4 +116,4 @@ const ApplyInternship = () => {
   );
 };
 
-export default ApplyInternship;
+export default ApplyJob;

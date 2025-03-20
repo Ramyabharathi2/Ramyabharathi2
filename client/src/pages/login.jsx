@@ -29,15 +29,16 @@ const Login = () => {
                 localStorage.setItem("isAuthenticated", "true");
                 localStorage.setItem("userData",JSON.stringify(response.data.data))
 
+
                 // localStorage.setItem("userData")
                setMessage({ text: response.data.message, type: 'success' }); // Success Message
 
                if (response.data.data.role==="user") {
                    navigate('/userdashboard');
-                   window.location.reload()
+                //    window.location.reload()
                 }else{
                    navigate('/dashboard');
-                   window.location.reload()
+                //    window.location.reload()
                }
 
            } else {

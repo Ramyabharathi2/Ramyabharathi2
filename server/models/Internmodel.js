@@ -5,7 +5,6 @@ const InternshipSchema = new mongoose.Schema(
     companyName: { type: String, required: true },
     InternshipType: { type: String, required: true },
     InternshipRoles: { type: [String], required: true },
-    InternshipField: { type: String, required: true },
     InternshipNature: { type: String, required: true },
     InternshipDescription: { type: String, required: true },
     requiredSkills: { type: String, required: true },
@@ -16,7 +15,6 @@ const InternshipSchema = new mongoose.Schema(
     contactMobile: {
       type: String,
       required: true,
-      match: /^\+\d{1,3}\s?\d{10}$/,
     },
     companyInformation: { type: String, required: true },
     InternshipResponsibility: { type: String, required: true },
