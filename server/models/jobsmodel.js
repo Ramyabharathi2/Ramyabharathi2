@@ -15,7 +15,7 @@ const jobDetailsSchema = new mongoose.Schema({
   degreesPreferred: { type: String, required: true },
   qualification: { type: String, required: true },
   contactEmail: { type: String, required: true, match: /.+\@.+\..+/ },
-  contactNumber: { type: String, required: true, match: /^\+\d{1,3}\s?\d{10}$/ },
+  contactNumber: { type: String, required: true },
   companyInformation: { type: String, required: true },
   accommodation: { type: String, required: true },
   country: { type: String, required: true },
@@ -26,4 +26,6 @@ const jobDetailsSchema = new mongoose.Schema({
 const JobDetails = mongoose.model('JobDetails', jobDetailsSchema);
 
 export default JobDetails;
+
+
                                                       

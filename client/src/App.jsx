@@ -37,6 +37,11 @@ import UserDashboard from "./pages/user/userdashboard";
 import AdminSignup from "./pages/AdminSinup";
 import Applyinternship from "./pages/user/Applyinternship";
 import ApplyInternship from "./pages/user/Applyinternship";
+import ApplyJob from "./pages/user/applyjob";
+import InternshipList from "./pages/internship/intershiplistuser";
+import UserjobList from "./pages/jobs/viewpostedjobs";
+import IntershipuserApplicationList from "./pages/internship/viewintershipapplications";
+import InternshipDetailsPage from "./pages/internship/viewinterdetils";
 
 
 
@@ -52,8 +57,11 @@ const App = () => {
 
         <Route path="/userDashboard" element={<UserDashboard />} />
         <Route path="/Interapply/:id" element={<ApplyInternship />} />
-
-
+        <Route path="/jobapply/:id" element={<ApplyJob />} />
+        <Route path="/ApplicationDetails/:id" element={<InternshipDetailsPage />} />
+        <Route path="/ApplyforInternships" element={<IntershipuserApplicationList />} />
+        <Route path="/ViewInternships" element={<InternshipList />} />
+        <Route path="/ViewPostedJobs" element={<UserjobList />} />
 
                   {/* Admin Routes */}
 

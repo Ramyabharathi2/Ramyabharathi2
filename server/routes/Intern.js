@@ -43,6 +43,8 @@ router.post("/", async (req, res) => {
     res.status(201).json(savedIntern);
   } catch (error) {
 
+    console.log(error);
+    
     res.status(400).json({ error: error.message });
   }
 });
@@ -142,5 +144,31 @@ router.post("/apply",upload.single("resume"), async (req, res) => {
   }
 
 });
+
+
+
+
+router.get("/user/:id", async (req, res) => {
+  try {
+   const {id}= req.params;
+   console.log(id);
+   
+    const existinginternship = await Application.find({ email:id });
+   
+  
+   
+    res.status(201).json(existinginternship);
+  } catch (error) {
+    console.log(error.message);
+    
+    res.status(500).json({ message: "Error  application", error: error.message });
+  }
+
+});
+
+
+
+
+
 
 export default router;
