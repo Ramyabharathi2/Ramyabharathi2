@@ -21,33 +21,32 @@ ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip,
 const UserDashboard = () => {
   const [JobListLength, setJobLength] = useState();
   const [InternLength, setInternLength] = useState();
+  const [appliedintern, setAppliedIntern] = useState();
+  const [appliedjob, setAppliedJob] = useState();
 
   // Only declare storedUser once
   const storedUser = JSON.parse(localStorage.getItem("userData"));
 
   const getJobDetails = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/job");
+      const response = await axios.get("http://localhost:5000/api/job/userdashboard/"+storedUser.email);
       console.log("Job details retrieved successfully:", response.data);
-      setJobLength(response.data.length);
+      
+      setJobLength(response.data.jobs.length);
+      setInternLength(response.data.intern.length);
+      setAppliedIntern(response.data.userintern.length);
+      setAppliedJob(response.data.userjob.length);
+      
+
     } catch (error) {
       console.error("Error fetching job details:", error.message);
     }
   };
 
-  const getInternshipDetails = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/api/Intern");
-      console.log("Internship details retrieved successfully:", response.data);
-      setInternLength(response.data.length);
-    } catch (error) {
-      console.error("Error fetching internship details:", error.message);
-    }
-  };
 
   useEffect(() => {
     getJobDetails();
-    getInternshipDetails(); // Combine API calls into one useEffect
+    // getInternshipDetails(); // Combine API calls into one useEffect
   }, []);
 
   // Data for Line Chart
@@ -98,19 +97,19 @@ const UserDashboard = () => {
         {/* Overview Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white hover:shadow-2xl transform hover:scale-105 transition-all duration-300 p-6 rounded-lg shadow-md text-center border-b-2 border-blue-500">
-            <p className="text-4xl font-bold text-blue-500">0</p>
+            <p className="text-4xl font-bold text-blue-500">{InternLength || 0}</p>
             <h3 className="text-lg font-semibold text-gray-600">Internship list</h3>
           </div>
           <div className="bg-white hover:shadow-2xl transform hover:scale-105 transition-all duration-300 p-6 rounded-lg shadow-md text-center border-b-2 border-blue-500">
-            <p className="text-4xl font-bold text-blue-500">0</p>
+            <p className="text-4xl font-bold text-blue-500">{JobListLength || 0}</p>
             <h3 className="text-lg font-semibold text-gray-600">Job list</h3>
           </div>
           <div className="bg-white hover:shadow-2xl transform hover:scale-105 transition-all duration-300 p-6 rounded-lg shadow-md text-center border-b-2 border-blue-500">
-            <p className="text-4xl font-bold text-blue-500">{InternLength || 0}</p>
+            <p className="text-4xl font-bold text-blue-500">{appliedintern || 0}</p>
             <h3 className="text-lg font-semibold text-gray-600">Internships Applied</h3>
           </div>
           <div className="bg-white hover:shadow-2xl transform hover:scale-105 transition-all duration-300 p-6 rounded-lg shadow-md text-center border-b-2 border-blue-500">
-            <p className="text-4xl font-bold text-blue-500">{JobListLength || 0}</p>
+            <p className="text-4xl font-bold text-blue-500">{appliedjob || 0}</p>
             <h3 className="text-lg font-semibold text-gray-600">Jobs Applied</h3>
           </div>
         </div>

@@ -16,13 +16,13 @@ const ApplicationCard = ({ application }) => {
       
       <div className="flex justify-between items-center mt-4">
         <a href={"http://localhost:5000"+application.resumeUrl} target="_blank" rel="noopener noreferrer" className="text-green-500 font-semibold hover:underline">View Resume</a>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600" onClick={()=>navigate(`/ApplicationDetails/${application.internshipId}`)}>View Details</button>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600" onClick={()=>navigate(`/JobDetails/${application.internshipId}`)}>View Details</button>
       </div>
     </div>
   );
 };
 
-const IntershipuserApplicationList = () => {
+const Viewuserjobapplylist = () => {
 
     const user =JSON.parse( localStorage.getItem("userData"))
   
@@ -33,7 +33,7 @@ const IntershipuserApplicationList = () => {
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/intern/user/"+user.email);//http://localhost:5000/api/intern/userdashboard
+        const response = await axios.get("http://localhost:5000/api/job/user/"+user.email);
         console.log("Application details retrieved successfully:", response.data);
         setApplications(response.data);
       } catch (error) {
@@ -52,4 +52,6 @@ const IntershipuserApplicationList = () => {
   );
 };
 
-export default IntershipuserApplicationList;
+export default Viewuserjobapplylist;
+
+

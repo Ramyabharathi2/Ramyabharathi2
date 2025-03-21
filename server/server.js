@@ -41,6 +41,10 @@ const employeeSchema = new mongoose.Schema({
 
 const Employee = mongoose.model('Employee', employeeSchema);
 
+
+export default Employee;
+
+
 // Signup Route
 app.post('/signup', async (req, res) => {
     const { name, email, password, mobile,role } = req.body;

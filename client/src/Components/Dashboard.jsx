@@ -90,7 +90,6 @@ const Dashboard = () => {
           <h1 className="text-3xl font-extrabold text-gray-800">
             Welcome, <span className="text-blue-500">{storedUser?.name}</span>
           </h1>
-         
         </div>
 
         {/* Overview Cards */}

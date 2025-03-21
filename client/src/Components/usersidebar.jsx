@@ -12,23 +12,17 @@ import {
 } from "react-icons/fa";
 
 const Usersidebar = () => {
-  const [isDropdownOpenInterview, setIsDropdownOpenInterview] = useState(false); // For Interview Questions dropdown
+ 
   const [isDropdownOpenInternship, setIsDropdownOpenInternship] = useState(false); // For Internship dropdown
   const [isDropdownOpenJob, setIsDropdownOpenJob] = useState(false); // For Job dropdown
-  const [isDropdownOpenApprovedApplications, setIsDropdownOpenApprovedApplications] = useState(false); // For Approved Applications dropdown
-  const [isDropdownOpenRejectedApplications, setIsDropdownOpenRejectedApplications] = useState(false); // For Rejected Applications dropdown
-  const [isDropdownOpenFaceToFaceInterview, setIsDropdownOpenFaceToFaceInterview] = useState(false); // For Face-to-Face Interview dropdown
-  const [isDropdownOpenOfferLeter, setisDropdownOpenOfferLeter] = useState(false); // offerleter dropdown
-
-  return (
+ return (
     <div className="max-h-max bg-blue-900 text-white w-72 flex flex-col">
       <nav className="flex-1 px-4 space-y-4">
         {/* Dashboard */}
         <NavLink
           to="/userdashboard"
           className={({ isActive }) =>
-            `flex items-center py-3 px-2 rounded-md mt-4 hover:bg-blue-500 ${
-              isActive ? "bg-blue-500" : ""
+            `flex items-center py-3 px-2 rounded-md mt-4 hover:bg-blue-500 ${isActive ? "bg-blue-500" : ""
             }`
           }
         >
@@ -51,44 +45,47 @@ const Usersidebar = () => {
 
         {/* Interview Questions with Sub-Parts */}
         <div>
-          <button
-            onClick={() => setIsDropdownOpenInterview(!isDropdownOpenInterview)}
-            className="flex items-center w-full py-3 px-2 rounded-md hover:bg-blue-500"
-          >
-            <FaClipboardCheck className="mr-2" />
-            <span className="text-sm">Interview Questions</span>
-            <FaAngleRight className="ml-auto" />
-          </button>
 
-          {isDropdownOpenInterview && (
-            <div className="ml-6 mt-2 space-y-2">
-              <NavLink
-                to="/viewIQ"
-                className={({ isActive }) =>
-                  `flex items-center py-2 px-2 rounded-md hover:bg-blue-500 whitespace-nowrap ${
-                    isActive ? "bg-blue-500" : ""
-                  }`
-                }
-              >
-                <span className="mr-2">></span>
-                view Interview Questions
-              </NavLink>
-              <NavLink
-                to="/exportIQ"
-                className={({ isActive }) =>
-                  `flex items-center py-2 px-1 rounded-md hover:bg-blue-500 whitespace-nowrap ${
-                    isActive ? "bg-blue-500" : ""
-                  }`
-                }
-              >
-                <span className="mr-2">></span>
-                export Interview Questions
-              </NavLink>
-             
-             
-            </div>
-          )}
+          <NavLink
+            to="/resume-builder"
+
+          >
+            <button
+
+              className="flex items-center w-full py-3 px-2 rounded-md hover:bg-blue-500"
+            >
+
+              <FaClipboardCheck className="mr-2" />
+              <span className="text-sm">Resume Builder</span>
+              <FaAngleRight className="ml-auto" />
+            </button>
+          </NavLink>
+
+
         </div>
+
+
+        <div>
+
+          <NavLink
+            to="/skill-learning"
+
+          >
+            <button
+
+              className="flex items-center w-full py-3 px-2 rounded-md hover:bg-blue-500"
+            >
+
+              <FaClipboardCheck className="mr-2" />
+              SkillLearningPage
+              <FaAngleRight className="ml-auto" />
+            </button>
+          </NavLink>
+
+
+        </div>
+
+
 
         {/* Internship with Sub-Parts */}
         <div>
@@ -106,8 +103,7 @@ const Usersidebar = () => {
               <NavLink
                 to="/ApplyforInternships"
                 className={({ isActive }) =>
-                  `flex items-center py-2 px-4 rounded-md hover:bg-blue-500 whitespace-nowrap ${
-                    isActive ? "bg-blue-500" : ""
+                  `flex items-center py-2 px-4 rounded-md hover:bg-blue-500 whitespace-nowrap ${isActive ? "bg-blue-500" : ""
                   }`
                 }
               >
@@ -117,15 +113,14 @@ const Usersidebar = () => {
               <NavLink
                 to="/ViewInternships"
                 className={({ isActive }) =>
-                  `flex items-center py-2 px-4 rounded-md hover:bg-blue-500 whitespace-nowrap ${
-                    isActive ? "bg-blue-500" : ""
+                  `flex items-center py-2 px-4 rounded-md hover:bg-blue-500 whitespace-nowrap ${isActive ? "bg-blue-500" : ""
                   }`
                 }
               >
                 <span className="mr-2">></span>
                 View Posted Internships
               </NavLink>
-             
+
             </div>
           )}
         </div>
@@ -143,12 +138,11 @@ const Usersidebar = () => {
 
           {isDropdownOpenJob && (
             <div className="ml-6 mt-2 space-y-2">
-            
+
               <NavLink
                 to="/ViewPostedJobs"
                 className={({ isActive }) =>
-                  `flex items-center py-2 px-4 rounded-md hover:bg-blue-500 whitespace-nowrap ${
-                    isActive ? "bg-blue-500" : ""
+                  `flex items-center py-2 px-4 rounded-md hover:bg-blue-500 whitespace-nowrap ${isActive ? "bg-blue-500" : ""
                   }`
                 }
               >
@@ -158,8 +152,7 @@ const Usersidebar = () => {
               <NavLink
                 to="/ApplyforJobs"
                 className={({ isActive }) =>
-                  `flex items-center py-2 px-4 rounded-md hover:bg-blue-500 whitespace-nowrap ${
-                    isActive ? "bg-blue-500" : ""
+                  `flex items-center py-2 px-4 rounded-md hover:bg-blue-500 whitespace-nowrap ${isActive ? "bg-blue-500" : ""
                   }`
                 }
               >
@@ -210,9 +203,9 @@ const Usersidebar = () => {
         </div> */}
 
 
-      
 
-      
+
+
 
       </nav>
     </div>
