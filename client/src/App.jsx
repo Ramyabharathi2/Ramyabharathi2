@@ -42,72 +42,64 @@ import InternshipList from "./pages/internship/intershiplistuser";
 import UserjobList from "./pages/jobs/viewpostedjobs";
 import IntershipuserApplicationList from "./pages/internship/viewintershipapplications";
 import InternshipDetailsPage from "./pages/internship/viewinterdetils";
+import Viewuserjobapplylist from "./pages/jobs/viewuserjobapplylist";
+import JobDetailsPage from "./pages/jobs/viewjobDetails";
+import ResumeForm from "./pages/resumebuilder/resumebuilder";
+import SkillLearningPage from "./pages/skilllearning/skill";
+import UnauthorizedPage from "./Components/unauth";
 
 
 
 
 const App = () => {
+
+  const storedUser = JSON.parse(localStorage.getItem("userData"));
+
   return (
     <Router>
-      <Navbar /> 
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-
-        <Route path="/userDashboard" element={<UserDashboard />} />
-        <Route path="/Interapply/:id" element={<ApplyInternship />} />
-        <Route path="/jobapply/:id" element={<ApplyJob />} />
-        <Route path="/ApplicationDetails/:id" element={<InternshipDetailsPage />} />
-        <Route path="/ApplyforInternships" element={<IntershipuserApplicationList />} />
-        <Route path="/ViewInternships" element={<InternshipList />} />
-        <Route path="/ViewPostedJobs" element={<UserjobList />} />
-
-                  {/* Admin Routes */}
-
         <Route path="/admin/register" element={<AdminSignup />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/Interviewschedule" element={<InterviewSchedule />} />
-        <Route path ="/profile"element={<Profile/>} />
-        <Route path ="/MCQ"element={<MCQManager/>} />
-        <Route path ="/MCQ-Links"element={<McqLinks/>} />
-        <Route path ="/ApprovedApplications"element={<ApprovedApplications/>} />
-        <Route path ="/RejectedApplications"element={<RejectedApplications/>} />
-        <Route path ="/FaceToFaceInterviewSchedule"element={<FaceToFaceInterviewSchedule/>} />
-        <Route path="/AddIQ" element={<AddQuestion/>} />
-        <Route path="/ImportIQ" element={<ImportIQ />} />
-        <Route path="/EditDeleteQuestion" element={<EditDeleteQuestion />} />
-        <Route path="/ExportQuestion" element={<ExportQuestion />} />
-        <Route path="/PostedInternship" element={<PostedInternship />} />
-        <Route path="/PostInternship" element={<PostInternship/>} />
-        <Route path="/PostJob" element={<PostJob/>} />
-        <Route path="/editJob/:id" element={<EditJob/>} />
-        <Route path="/editIntern/:id" element={<InternEdit/>} />
 
-
-        <Route path="/PostedJobs" element={<PostedJobs/>} />
-        <Route path="/ApprovedInternships" element={<ApprovedInternships/>} />
-        <Route path="/ApprovedJobs" element={<ApprovedJobs/>} />
-        <Route path="/RejectedInternship" element={<RejectedInternship/>} />
-        <Route path="/RejectedJobs" element={<RejectedJobs/>} />
-        <Route path="/OfferInternships" element={<OfferInternships/>} />
-        <Route path="/Offerjobs" element={<Offerjobs/>} />
-        <Route path="/F2FJobs" element={<F2FJobs/>} />
-        <Route path="/F2fInternship" element={<F2fInternship/>} />
-        <Route path="/ApplicationsJob" element={<ApplicationsJob/>} />
-        <Route path="/ApplicationsIntern" element={<ReceivedApplications/>} />
-
-
-        
-        
-
-
-
-
-
-
+        {
+          storedUser && storedUser.role === "admin" ? (
+            <>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/Interviewschedule" element={<InterviewSchedule />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/PostedInternship" element={<PostedInternship />} />
+              <Route path="/PostInternship" element={<PostInternship />} />
+              <Route path="/PostJob" element={<PostJob />} />
+              <Route path="/editJob/:id" element={<EditJob />} />
+              <Route path="/editIntern/:id" element={<InternEdit />} />
+              <Route path="/PostedJobs" element={<PostedJobs />} />
+              <Route path="/ApplicationsIntern" element={<><h1>ApplicationsIntern</h1></>} />
+              <Route path="/ApplicationsJob" element={<><h1>ApplicationsJob</h1></>} />
+              {/* ApplicationsJob */}
+            
+            </>
+          ) : (
+            <>
+              <Route path="/userDashboard" element={<UserDashboard />} />
+              <Route path="/Interapply/:id" element={<ApplyInternship />} />
+              <Route path="/jobapply/:id" element={<ApplyJob />} />
+              <Route path="/ApplicationDetails/:id" element={<InternshipDetailsPage />} />
+              <Route path="/JobDetails/:id" element={<JobDetailsPage />} />
+              <Route path="/ApplyforInternships" element={<IntershipuserApplicationList />} />
+              <Route path="/ApplyforJobs" element={<Viewuserjobapplylist />} />
+              <Route path="/resume-builder" element={<ResumeForm />} />
+              <Route path="/skill-learning" element={<SkillLearningPage />} />
+              <Route path="/ViewInternships" element={<InternshipList />} />
+              <Route path="/ViewPostedJobs" element={<UserjobList />} />
+            </>
+          )
+        }
+        <Route path="/*" element={<UnauthorizedPage />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </Router>
   );
 };

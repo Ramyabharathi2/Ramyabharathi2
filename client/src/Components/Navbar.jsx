@@ -6,7 +6,7 @@ import logo from "../assets/logo.png";
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
+  const storedUser = JSON.parse(localStorage.getItem("userData"));
   const storedAuth = localStorage.getItem("isAuthenticated");
   const [isAuthenticated, setIsAuthenticated] = useState(storedAuth === "true");
 
@@ -24,6 +24,15 @@ const Navbar = () => {
   const handleLogin = () => {
     navigate("/login");
   };
+
+  const handlelearnpage=()=> navigate("/skill-learning");
+
+  const handledashboard=()=>{
+
+    storedUser.role === "admin" ? navigate("/dashboard") :null
+    storedUser.role === "user" ? navigate("/userdashboard") :null
+   
+  }
 
   const handleLogout = () => {
     localStorage.setItem("isAuthenticated", "false");
@@ -105,48 +114,15 @@ const Navbar = () => {
 
         {/* Authentication and Notification Buttons */}
         <div className="flex items-center space-x-4">
-          {/* Notification Bell */}
-          {isAuthenticated && (
-            <div className="relative">
-              <button
-                onClick={() => setIsNotificationOpen(!isNotificationOpen)}
-                className="notification-button relative text-gray-600 hover:text-blue-500 transition"
-              >
-                <FaBell className="text-2xl" />
-                {unreadNotifications > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                    {unreadNotifications}
-                  </span>
-                )}
-              </button>
+          <div className="relative">
+            <button
+              onClick={handledashboard}
+              className="profile-button bg-green-200 text-black py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-orange-500 focus:outline-none flex items-center transition duration-300"
+            >
+              Dashboard
+            </button>
+          </div>
 
-              {/* Notification Dropdown */}
-              {isNotificationOpen && (
-                <div className="notification-dropdown absolute right-0 mt-2 w-72 bg-white border rounded-lg shadow-lg z-10">
-                  <div className="p-4 border-b">
-                    <h3 className="text-lg font-semibold text-gray-800">
-                      Notifications
-                    </h3>
-                  </div>
-                  <ul className="max-h-64 overflow-y-auto">
-                    {notifications.map((notification) => (
-                      <li
-                        key={notification.id}
-                        className="p-3 hover:bg-gray-100 text-sm text-gray-700"
-                      >
-                        {notification.message}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="p-2 text-center text-indigo-600 cursor-pointer hover:bg-gray-100">
-                    <button onClick={() => setIsNotificationOpen(false)}>
-                      Close
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
 
           {/* Profile / Login and Signup */}
           {isAuthenticated ? (
@@ -208,6 +184,21 @@ const Navbar = () => {
               </Link>
             </>
           )}
+
+          <button
+            onClick={handlelearnpage}
+            className="bg-blue-500 text-white py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-orange-600 focus:outline-none flex items-center transition duration-300"
+          >
+            Learning Skills
+          </button>
+          <Link
+            to="/resume-builder"
+            className="bg-blue-500 text-white py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-orange-600 focus:outline-none flex items-center transition duration-300"
+          >
+
+            Resume Builder
+          </Link>
+
         </div>
       </div>
     </nav>

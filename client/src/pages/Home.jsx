@@ -1,5 +1,8 @@
 import React from "react";
 import { FaSearch, FaBriefcase, FaBuilding, FaGraduationCap, FaUsers } from "react-icons/fa";
+import UserjobList from "./jobs/viewpostedjobs";
+import InternshipList from "./internship/intershiplistuser";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -11,17 +14,6 @@ const HomePage = () => {
           Discover thousands of career opportunities tailored just for you.
         </p>
 
-        {/* Search Bar */}
-        <div className="max-w-3xl mx-auto flex items-center bg-white p-4 rounded-full shadow-md transition hover:shadow-lg">
-          <input
-            type="text"
-            placeholder="Search for jobs, companies, or locations"
-            className="flex-grow py-3 px-4 rounded-l-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
-          />
-          <button className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-r-full flex items-center transition">
-            <FaSearch className="mr-2" /> Search
-          </button>
-        </div>
       </section>
 
       {/* Job Categories Section */}
@@ -43,7 +35,44 @@ const HomePage = () => {
               <p className="text-gray-600">{category.description}</p>
             </div>
           ))}
+
+
         </div>
+        <UserjobList />
+
+
+
+
+      </section>
+
+
+      {/* Job Categories Section */}
+      <section className="py-16 bg-gray-100">
+        <h2 className="text-4xl font-bold text-center mb-12">Explore Internship Categories</h2>
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-6">
+          {[
+            { icon: FaBriefcase, title: "Full-Time Internship", description: "Explore a variety of full-time job opportunities in various industries." },
+            { icon: FaBuilding, title: "Part-Time Internship", description: "Find flexible part-time roles that fit your schedule and needs." },
+            { icon: FaGraduationCap, title: "Internships", description: "Gain valuable work experience with internship opportunities." },
+            { icon: FaUsers, title: "Remote Internship", description: "Find remote job opportunities that allow you to work from anywhere." },
+          ].map((category, index) => (
+            <div
+              key={index}
+              className="bg-white p-8 rounded-xl shadow-md text-center hover:shadow-lg hover:scale-105 transition transform duration-300"
+            >
+              <category.icon className="text-blue-500 text-6xl mb-4" />
+              <h3 className="text-xl font-semibold mb-2">{category.title}</h3>
+              <p className="text-gray-600">{category.description}</p>
+            </div>
+          ))}
+
+
+        </div>
+        <InternshipList />
+
+
+
+
       </section>
 
       {/* Why Choose Us Section */}
@@ -77,9 +106,12 @@ const HomePage = () => {
         <p className="text-lg mb-8">
           Browse thousands of job opportunities and take the next step in your career today!
         </p>
+        <Link to={"/ViewPostedJobs"}>
+       
         <button className="bg-white text-blue-600 py-3 px-10 rounded-full text-lg font-semibold hover:bg-gray-100 transition">
           Start Searching
         </button>
+        </Link>
       </section>
     </div>
   );
