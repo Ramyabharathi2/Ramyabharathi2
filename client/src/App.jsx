@@ -63,6 +63,8 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/admin/register" element={<AdminSignup />} />
+        <Route path="/resume-builder" element={<ResumeForm />} />
+        <Route path="/skill-learning" element={<SkillLearningPage />} />
 
         {
           storedUser && storedUser.role === "admin" ? (
@@ -90,8 +92,6 @@ const App = () => {
               <Route path="/JobDetails/:id" element={<JobDetailsPage />} />
               <Route path="/ApplyforInternships" element={<IntershipuserApplicationList />} />
               <Route path="/ApplyforJobs" element={<Viewuserjobapplylist />} />
-              <Route path="/resume-builder" element={<ResumeForm />} />
-              <Route path="/skill-learning" element={<SkillLearningPage />} />
               <Route path="/ViewInternships" element={<InternshipList />} />
               <Route path="/ViewPostedJobs" element={<UserjobList />} />
             </>

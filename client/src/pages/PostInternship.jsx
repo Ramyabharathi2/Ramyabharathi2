@@ -7,7 +7,6 @@ const PostInternship = () => {
     companyName: "",
     InternshipType: "",
     InternshipRoles: "",
-    InternshipField: "",
     InternshipNature: "",
     InternshipDescription: "",
     requiredSkills: "",
@@ -40,7 +39,7 @@ const PostInternship = () => {
       companyName: "",
       InternshipType: "",
       InternshipRoles: "",
-      InternshipField: "",
+     
       InternshipNature: "",
       InternshipDescription: "",
       requiredSkills: "",
@@ -93,9 +92,11 @@ const PostInternship = () => {
   };
 
   const handleSubmit = async (e) => {
+    console.log("Form Data Submitted: ", formData);
+    
     e.preventDefault();
     
-    if (!validate()) return;
+    // if (!validate()) return;
    
 
     // Start loading indicator
@@ -107,6 +108,8 @@ const PostInternship = () => {
      try {
       
       const response = await axios.post("http://localhost:5000/api/intern",formData);
+      console.log(response.data);
+      
     
       alert("Internship posted successfully!");
 
