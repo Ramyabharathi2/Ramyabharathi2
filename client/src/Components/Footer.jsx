@@ -101,6 +101,9 @@ const Footer = () => {
               Subscribe
             </button>
           </form>
+
+         
+
         </div>
       </div>
 
