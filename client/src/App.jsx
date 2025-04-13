@@ -13,7 +13,7 @@ import McqLinks from "./pages/Mcq-links";
 import ApprovedApplications from "./pages/ApprovedApplication";
 import RejectedApplications from "./pages/Rejetedapplication";
 import FaceToFaceInterviewSchedule from "./pages/Facetoface";
-import AddQuestion from "./pages/addIQ";
+
 import ImportIQ from "./pages/ImportIQ";
 import EditDeleteQuestion from "./pages/EditDeleteQuestion";
 import ExportQuestion from "./pages/ExportQuestion";
@@ -47,6 +47,9 @@ import JobDetailsPage from "./pages/jobs/viewjobDetails";
 import ResumeForm from "./pages/resumebuilder/resumebuilder";
 import SkillLearningPage from "./pages/skilllearning/skill";
 import UnauthorizedPage from "./Components/unauth";
+import AddQuestion from "./pages/quize/addquize";
+import ViewQuestions from "./pages/quize/getallqustions";
+import PlayQuiz from "./pages/quize/userAttendthequize";
 
 
 
@@ -65,7 +68,11 @@ const App = () => {
         <Route path="/admin/register" element={<AdminSignup />} />
         <Route path="/resume-builder" element={<ResumeForm />} />
         <Route path="/skill-learning" element={<SkillLearningPage />} />
-
+        <Route path="/add-question" element={<AddQuestion />} />
+        
+        <Route path="/view-questions" element={<ViewQuestions />} />
+        <Route path="/playquiz" element={<PlayQuiz />} />
+        
         {
           storedUser && storedUser.role === "admin" ? (
             <>

@@ -68,37 +68,25 @@ const Navbar = () => {
         </div>
 
         {/* Navigation Links - Show only when NOT authenticated */}
-        {!isAuthenticated && !isDashboardPage && (
+
           <ul className="flex items-center space-x-8 text-base font-semibold ml-10">
             <li>
               <Link to="/" className="hover:text-blue-500 transition">
                 Home
               </Link>
             </li>
-            <li className="relative group">
-              <Link to="#" className="hover:text-blue-500 transition">
-                Jobs
-              </Link>
-              <ul className="absolute hidden group-hover:block bg-white shadow-md rounded mt-0 p-2 w-40">
-                <li>
-                  <Link to="#" className="block px-4 py-2 hover:bg-blue-100 rounded">
-                    Full Time
+            <li>
+                  <Link to="/view-questions" className="block px-4 py-2 hover:bg-blue-100 rounded">
+                  view-all-questions
                   </Link>
                 </li>
-                <li>
-                  <Link to="#" className="block px-4 py-2 hover:bg-blue-100 rounded">
-                    Part Time
-                  </Link>
-                </li>
-              </ul>
-            </li>
             <li>
               <Link to="#" className="hover:text-blue-500 transition">
                 FAQ
               </Link>
             </li>
           </ul>
-        )}
+    
 
         {/* Search Bar - Show only when NOT authenticated */}
         {!isAuthenticated && !isDashboardPage && (
@@ -144,6 +132,14 @@ const Navbar = () => {
                         className="block px-4 py-2 hover:bg-gray-100"
                       >
                         My Profile
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/playquiz"
+                        className="block px-4 py-2 hover:bg-gray-100"
+                      >
+                        Play Quize 
                       </Link>
                     </li>
                     <li>

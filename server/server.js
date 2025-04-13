@@ -15,7 +15,7 @@ app.use("/uploads", express.static("uploads"));
 
 import jobRoutes from './routes/jobs.js';
 import  InternRoutes from './routes/Intern.js'
-import quiz from './routes/addquiz.js';
+import quiz from './routes/quize.js';
 
 
 
