@@ -84,3 +84,13 @@ export const getAttempts = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+export const getallAttempts = async (req, res) => {
+  try {
+    
+    const attempts = await QuizAttempt.find()
+    res.json(attempts);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

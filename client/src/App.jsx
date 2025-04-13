@@ -53,6 +53,9 @@ import PlayQuiz from "./pages/quize/userAttendthequize";
 import ApplicationsTable from "./pages/jobs/viewalljobApplication";
 import InternshipApplicationsTable from "./pages/internship/allinternapllications";
 import ViewQuestionsAdmin from "./pages/quize/allQuizesTable";
+import PlayQuizPrompt from "./pages/quize/enterQuize";
+import QuizAttemptsPage from "./pages/quize/getallAttempts";
+import EditProfile from "./pages/profile/profilepage";
 
 
 
@@ -64,6 +67,7 @@ const App = () => {
   return (
     <Router>
       <Navbar />
+      <PlayQuizPrompt/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -75,13 +79,13 @@ const App = () => {
         
         <Route path="/view-questions" element={<ViewQuestions />} />
         <Route path="/playquiz" element={<PlayQuiz />} />
-        
+      
         {
           storedUser && storedUser.role === "admin" ? (
             <>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/Interviewschedule" element={<InterviewSchedule />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile" element={<EditProfile />} />
               <Route path="/PostedInternship" element={<PostedInternship />} />
               <Route path="/PostInternship" element={<PostInternship />} />
               <Route path="/PostJob" element={<PostJob />} />
@@ -92,7 +96,7 @@ const App = () => {
               <Route path="/ApplicationsJob" element={<><ApplicationsTable/></>} />
               <Route path="/ViewQuestionsAdmin" element={<><ViewQuestionsAdmin/></>} />
               <Route path="/add-question" element={<AddQuestion />} />
-              
+              <Route path="/QuizAttemptsPage" element={<QuizAttemptsPage />} />
               {/* ApplicationsJob */}
             
             </>
@@ -107,8 +111,16 @@ const App = () => {
               <Route path="/ApplyforJobs" element={<Viewuserjobapplylist />} />
               <Route path="/ViewInternships" element={<InternshipList />} />
               <Route path="/ViewPostedJobs" element={<UserjobList />} />
+           
+              
             </>
           )
+
+
+        
+        }
+        {
+            storedUser&&<><Route path="/profile" element={<EditProfile />} /></>
         }
         <Route path="/*" element={<UnauthorizedPage />} />
       </Routes>

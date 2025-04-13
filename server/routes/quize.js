@@ -5,7 +5,8 @@ import {
   deleteQuestion,
   submitQuiz,
   getAttempts,
-  getAllQuestion
+  getAllQuestion,
+  getallAttempts
 } from '../controller/quizecontroler.js';
 
 const router = express.Router();
@@ -16,5 +17,7 @@ router.get('/category/:category', getQuestionsByCategory);
 router.delete('/:id', deleteQuestion);
 router.post('/submit', submitQuiz);
 router.get('/attempts/:userId', getAttempts);
+router.get('/all/attempts', getallAttempts);
+
 
 export default router;

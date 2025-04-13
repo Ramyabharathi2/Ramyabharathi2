@@ -57,7 +57,7 @@ const Navbar = () => {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, []);
+  }, [isProfileMenuOpen]);
 
   return (
     <nav className="bg-white text-black shadow-md border-b-2 font-poppins py-4">
@@ -105,15 +105,22 @@ const Navbar = () => {
   
         {isAuthenticated ? (
           <div className="relative">
+              <button
+             onClick={()=>navigate("/playquiz")}
+              className="bg-gray-200 text-black py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-blue-500 transition duration-300"
+            >
+              
+              playquiz
+            </button>
             <button
-              onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+              onClick={() => navigate("/profile")}
               className="bg-gray-200 text-black py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-blue-500 transition duration-300"
             >
               <FaUser className="inline-block mr-2" />
               Profile
             </button>
-  
-            {isProfileMenuOpen && (
+          
+            {/* {isProfileMenuOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-10">
                 <ul className="text-gray-700">
                   <li><Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">My Profile</Link></li>
@@ -124,7 +131,7 @@ const Navbar = () => {
                   </li>
                 </ul>
               </div>
-            )}
+            )} */}
           </div>
         ) : (
           <>

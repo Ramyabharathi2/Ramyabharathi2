@@ -30,6 +30,19 @@ const Usersidebar = () => {
           Dashboard
         </NavLink>
 
+        <NavLink
+          to="/playquiz"
+          className={({ isActive }) =>
+            `flex items-center py-3 px-2 rounded-md mt-4 hover:bg-blue-500 ${isActive ? "bg-blue-500" : ""
+            }`
+          }
+        >
+          <FaUser className="mr-2" />
+          play Quiz
+        </NavLink>
+
+        
+
         {/* Interview Schedule
         <NavLink
           to="/interv"
