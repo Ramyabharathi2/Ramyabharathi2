@@ -56,6 +56,7 @@ import ViewQuestionsAdmin from "./pages/quize/allQuizesTable";
 import PlayQuizPrompt from "./pages/quize/enterQuize";
 import QuizAttemptsPage from "./pages/quize/getallAttempts";
 import EditProfile from "./pages/profile/profilepage";
+import Chatbot from "./Components/chatbot/chat";
 
 
 
@@ -68,6 +69,7 @@ const App = () => {
     <Router>
       <Navbar />
       <PlayQuizPrompt/>
+      <Chatbot/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
