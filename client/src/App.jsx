@@ -50,6 +50,9 @@ import UnauthorizedPage from "./Components/unauth";
 import AddQuestion from "./pages/quize/addquize";
 import ViewQuestions from "./pages/quize/getallqustions";
 import PlayQuiz from "./pages/quize/userAttendthequize";
+import ApplicationsTable from "./pages/jobs/viewalljobApplication";
+import InternshipApplicationsTable from "./pages/internship/allinternapllications";
+import ViewQuestionsAdmin from "./pages/quize/allQuizesTable";
 
 
 
@@ -68,7 +71,7 @@ const App = () => {
         <Route path="/admin/register" element={<AdminSignup />} />
         <Route path="/resume-builder" element={<ResumeForm />} />
         <Route path="/skill-learning" element={<SkillLearningPage />} />
-        <Route path="/add-question" element={<AddQuestion />} />
+       
         
         <Route path="/view-questions" element={<ViewQuestions />} />
         <Route path="/playquiz" element={<PlayQuiz />} />
@@ -85,8 +88,11 @@ const App = () => {
               <Route path="/editJob/:id" element={<EditJob />} />
               <Route path="/editIntern/:id" element={<InternEdit />} />
               <Route path="/PostedJobs" element={<PostedJobs />} />
-              <Route path="/ApplicationsIntern" element={<><h1>ApplicationsIntern</h1></>} />
-              <Route path="/ApplicationsJob" element={<><h1>ApplicationsJob</h1></>} />
+              <Route path="/ApplicationsIntern" element={<><InternshipApplicationsTable/></>} />
+              <Route path="/ApplicationsJob" element={<><ApplicationsTable/></>} />
+              <Route path="/ViewQuestionsAdmin" element={<><ViewQuestionsAdmin/></>} />
+              <Route path="/add-question" element={<AddQuestion />} />
+              
               {/* ApplicationsJob */}
             
             </>

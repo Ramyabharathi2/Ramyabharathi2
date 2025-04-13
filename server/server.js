@@ -103,7 +103,8 @@ app.post('/login', async (req, res) => {
 app.use("/api/job", jobRoutes);
 app.use("/api/intern",InternRoutes)
 app.use("/api/addquiz",quiz)
-//   
+
+//   /api/intern/all-intern-applications/
 // Start the server"
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

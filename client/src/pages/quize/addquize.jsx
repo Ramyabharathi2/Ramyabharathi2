@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import Sidebar from '../../Components/Siderbar';
 
 export default function AddQuestion() {
   const [formData, setFormData] = useState({
@@ -70,7 +71,9 @@ export default function AddQuestion() {
   ];
 
   return (
-    <div className="max-w-xl mx-auto mt-10 bg-white p-6 rounded-xl shadow-lg">
+  <div className='flex'>
+    <Sidebar/>
+      <div className="max-w-xl mx-auto mt-10 bg-white p-6 rounded-xl shadow-lg">
       <h2 className="text-2xl font-bold mb-4 text-center text-blue-700">Add New Question</h2>
       {message && <div className="mb-4 text-center text-green-600">{message}</div>}
       <form className="space-y-4" onSubmit={handleSubmit}>
@@ -168,5 +171,6 @@ export default function AddQuestion() {
         )}
       </form>
     </div>
+  </div>
   );
 }

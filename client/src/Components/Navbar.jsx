@@ -60,144 +60,108 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-white text-black shadow-2xl border-4 font-poppins  py-4">
-      <div className="container mx-auto flex   items-center justify-between px-6">
-        {/* Logo Section */}
-        <div className="flex items-center space-x-4">
-          <img src={logo} alt="Logo" className="h-24 w-56 object-contain" />
-        </div>
-
-        {/* Navigation Links - Show only when NOT authenticated */}
-
-          <ul className="flex items-center space-x-8 text-base font-semibold ml-10">
-            <li>
-              <Link to="/" className="hover:text-blue-500 transition">
-                Home
-              </Link>
-            </li>
-            <li>
-                  <Link to="/view-questions" className="block px-4 py-2 hover:bg-blue-100 rounded">
-                  view-all-questions
-                  </Link>
-                </li>
-            <li>
-              <Link to="#" className="hover:text-blue-500 transition">
-                FAQ
-              </Link>
-            </li>
-          </ul>
-    
-
-        {/* Search Bar - Show only when NOT authenticated */}
+    <nav className="bg-white text-black shadow-md border-b-2 font-poppins py-4">
+    <div className="container mx-auto flex flex-wrap items-center justify-between px-6">
+      
+      {/* Logo Section */}
+      <div className="flex items-center space-x-4">
+        <img src={logo} alt="Logo" className="h-16 w-auto object-contain" />
+      </div>
+  
+      {/* Center Navigation Links */}
+      <div className="flex-1 hidden lg:flex justify-center">
+        <ul className="flex space-x-8 text-base font-semibold">
+          <li>
+            <Link to="/" className="hover:text-blue-500 transition">Home</Link>
+          </li>
+          <li>
+            <Link to="/view-questions" className="hover:text-blue-500 transition">View Questions</Link>
+          </li>
+          <li>
+            <Link to="#" className="hover:text-blue-500 transition">FAQ</Link>
+          </li>
+        </ul>
+      </div>
+  
+      {/* Right Section - Auth / Dashboard / Actions */}
+      <div className="flex items-center space-x-4 mt-4 lg:mt-0">
         {!isAuthenticated && !isDashboardPage && (
-          <div className="relative flex-1 max-w-sm mx-10 hidden lg:block">
+          <div className="relative hidden lg:block">
             <input
               type="text"
               placeholder="Search..."
-              className="border border-gray-300 rounded-full py-2 px-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
+              className="border border-gray-300 rounded-full py-2 px-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-64"
             />
             <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
         )}
-
-        {/* Authentication and Notification Buttons */}
-        <div className="flex items-center space-x-4">
+  
+        <button
+          onClick={handledashboard}
+          className="bg-green-200 text-black py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-orange-500 transition duration-300"
+        >
+          Dashboard
+        </button>
+  
+        {isAuthenticated ? (
           <div className="relative">
             <button
-              onClick={handledashboard}
-              className="profile-button bg-green-200 text-black py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-orange-500 focus:outline-none flex items-center transition duration-300"
+              onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+              className="bg-gray-200 text-black py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-blue-500 transition duration-300"
             >
-              Dashboard
+              <FaUser className="inline-block mr-2" />
+              Profile
             </button>
+  
+            {isProfileMenuOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-10">
+                <ul className="text-gray-700">
+                  <li><Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">My Profile</Link></li>
+                  <li><Link to="/playquiz" className="block px-4 py-2 hover:bg-gray-100">Play Quiz</Link></li>
+                  <li><Link to="/settings" className="block px-4 py-2 hover:bg-gray-100">Password Change</Link></li>
+                  <li>
+                    <button onClick={handleLogout} className="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
-
-
-          {/* Profile / Login and Signup */}
-          {isAuthenticated ? (
-            <div className="relative">
-              <button
-                onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-                className="profile-button bg-gray-200 text-black py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-blue-500 focus:outline-none flex items-center transition duration-300"
-              >
-                <FaUser className="mr-2" />
-                Profile
-              </button>
-
-              {isProfileMenuOpen && (
-                <div className="profile-dropdown absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-10">
-                  <ul className="text-gray-700">
-                    <li>
-                      <Link
-                        to="/profile"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                        My Profile
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/playquiz"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                        Play Quize 
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/settings"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                        password change
-                      </Link>
-                    </li>
-                    <li>
-                      <button
-                        onClick={handleLogout}
-                        className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-                      >
-                        Logout
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
-          ) : (
-            <>
-              <button
-                onClick={handleLogin}
-                className="bg-blue-500 text-white py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-blue-600 focus:outline-none flex items-center transition duration-300"
-              >
-                <FaSignInAlt className="mr-2" />
-                Login
-              </button>
-              <Link
-                to="/signup"
-                className="bg-green-500 text-white py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-green-600 focus:outline-none flex items-center transition duration-300"
-              >
-                <FaUserPlus className="mr-2" />
-                Signup
-              </Link>
-            </>
-          )}
-
-          <button
-            onClick={handlelearnpage}
-            className="bg-blue-500 text-white py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-orange-600 focus:outline-none flex items-center transition duration-300"
-          >
-            Learning Skills
-          </button>
-          <Link
-            to="/resume-builder"
-            className="bg-blue-500 text-white py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-orange-600 focus:outline-none flex items-center transition duration-300"
-          >
-
-            Resume Builder
-          </Link>
-
-        </div>
+        ) : (
+          <>
+            <button
+              onClick={handleLogin}
+              className="bg-blue-500 text-white py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-blue-600 transition duration-300"
+            >
+              <FaSignInAlt className="inline-block mr-2" />
+              Login
+            </button>
+            <Link
+              to="/signup"
+              className="bg-green-500 text-white py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-green-600 transition duration-300"
+            >
+              <FaUserPlus className="inline-block mr-2" />
+              Signup
+            </Link>
+          </>
+        )}
+  
+        <button
+          onClick={handlelearnpage}
+          className="bg-blue-500 text-white py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-orange-600 transition duration-300"
+        >
+          Learning Skills
+        </button>
+  
+        <Link
+          to="/resume-builder"
+          className="bg-blue-500 text-white py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-orange-600 transition duration-300"
+        >
+          Resume Builder
+        </Link>
       </div>
-    </nav>
+    </div>
+  </nav>
+  
   );
 };
 

@@ -108,7 +108,7 @@ const Usersidebar = () => {
                 }
               >
                 <span className="mr-2">></span>
-                Apply for Internships
+                Applied for Internships
               </NavLink>
               <NavLink
                 to="/ViewInternships"
