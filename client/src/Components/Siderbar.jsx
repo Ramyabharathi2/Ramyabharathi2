@@ -35,7 +35,42 @@ const Sidebar = () => {
           <FaUser className="mr-2" />
           Dashboard
         </NavLink>
-
+        <NavLink
+          to="/add-question"
+          className={({ isActive }) =>
+            `flex items-center py-3 px-2 rounded-md mt-4 hover:bg-blue-500 ${
+              isActive ? "bg-blue-500" : ""
+            }`
+          }
+        >
+          <FaUser className="mr-2" />
+          Add-Quize-question
+        </NavLink>
+        <NavLink
+          to="/ViewQuestionsAdmin"
+          className={({ isActive }) =>
+            `flex items-center py-3 px-2 rounded-md mt-4 hover:bg-blue-500 ${
+              isActive ? "bg-blue-500" : ""
+            }`
+          }
+        >
+          <FaUser className="mr-2" />
+          ViewQuestions
+        </NavLink>
+        <NavLink
+          to="/QuizAttemptsPage"
+          className={({ isActive }) =>
+            `flex items-center py-3 px-2 rounded-md mt-4 hover:bg-blue-500 ${
+              isActive ? "bg-blue-500" : ""
+            }`
+          }
+        >
+          <FaUser className="mr-2" />
+          Quiz Attempts Page
+        </NavLink>
+        
+     
+       
         {/* Interview Schedule */}
         <NavLink
           to="/Interviewschedule"

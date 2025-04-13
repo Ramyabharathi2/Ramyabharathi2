@@ -13,7 +13,7 @@ import McqLinks from "./pages/Mcq-links";
 import ApprovedApplications from "./pages/ApprovedApplication";
 import RejectedApplications from "./pages/Rejetedapplication";
 import FaceToFaceInterviewSchedule from "./pages/Facetoface";
-import AddQuestion from "./pages/addIQ";
+
 import ImportIQ from "./pages/ImportIQ";
 import EditDeleteQuestion from "./pages/EditDeleteQuestion";
 import ExportQuestion from "./pages/ExportQuestion";
@@ -47,6 +47,15 @@ import JobDetailsPage from "./pages/jobs/viewjobDetails";
 import ResumeForm from "./pages/resumebuilder/resumebuilder";
 import SkillLearningPage from "./pages/skilllearning/skill";
 import UnauthorizedPage from "./Components/unauth";
+import AddQuestion from "./pages/quize/addquize";
+import ViewQuestions from "./pages/quize/getallqustions";
+import PlayQuiz from "./pages/quize/userAttendthequize";
+import ApplicationsTable from "./pages/jobs/viewalljobApplication";
+import InternshipApplicationsTable from "./pages/internship/allinternapllications";
+import ViewQuestionsAdmin from "./pages/quize/allQuizesTable";
+import PlayQuizPrompt from "./pages/quize/enterQuize";
+import QuizAttemptsPage from "./pages/quize/getallAttempts";
+import EditProfile from "./pages/profile/profilepage";
 
 
 
@@ -58,6 +67,7 @@ const App = () => {
   return (
     <Router>
       <Navbar />
+      <PlayQuizPrompt/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -65,21 +75,28 @@ const App = () => {
         <Route path="/admin/register" element={<AdminSignup />} />
         <Route path="/resume-builder" element={<ResumeForm />} />
         <Route path="/skill-learning" element={<SkillLearningPage />} />
-
+       
+        
+        <Route path="/view-questions" element={<ViewQuestions />} />
+        <Route path="/playquiz" element={<PlayQuiz />} />
+      
         {
           storedUser && storedUser.role === "admin" ? (
             <>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/Interviewschedule" element={<InterviewSchedule />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile" element={<EditProfile />} />
               <Route path="/PostedInternship" element={<PostedInternship />} />
               <Route path="/PostInternship" element={<PostInternship />} />
               <Route path="/PostJob" element={<PostJob />} />
               <Route path="/editJob/:id" element={<EditJob />} />
               <Route path="/editIntern/:id" element={<InternEdit />} />
               <Route path="/PostedJobs" element={<PostedJobs />} />
-              <Route path="/ApplicationsIntern" element={<><h1>ApplicationsIntern</h1></>} />
-              <Route path="/ApplicationsJob" element={<><h1>ApplicationsJob</h1></>} />
+              <Route path="/ApplicationsIntern" element={<><InternshipApplicationsTable/></>} />
+              <Route path="/ApplicationsJob" element={<><ApplicationsTable/></>} />
+              <Route path="/ViewQuestionsAdmin" element={<><ViewQuestionsAdmin/></>} />
+              <Route path="/add-question" element={<AddQuestion />} />
+              <Route path="/QuizAttemptsPage" element={<QuizAttemptsPage />} />
               {/* ApplicationsJob */}
             
             </>
@@ -94,8 +111,16 @@ const App = () => {
               <Route path="/ApplyforJobs" element={<Viewuserjobapplylist />} />
               <Route path="/ViewInternships" element={<InternshipList />} />
               <Route path="/ViewPostedJobs" element={<UserjobList />} />
+           
+              
             </>
           )
+
+
+        
+        }
+        {
+            storedUser&&<><Route path="/profile" element={<EditProfile />} /></>
         }
         <Route path="/*" element={<UnauthorizedPage />} />
       </Routes>

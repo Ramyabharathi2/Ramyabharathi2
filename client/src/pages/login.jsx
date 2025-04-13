@@ -35,10 +35,10 @@ const Login = () => {
 
                if (response.data.data.role==="user") {
                    navigate('/userdashboard');
-                //    window.location.reload()
+                   window.location.reload()
                 }else{
                    navigate('/dashboard');
-                //    window.location.reload()
+                   window.location.reload()
                }
 
            } else {

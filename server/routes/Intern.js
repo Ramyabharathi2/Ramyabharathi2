@@ -166,6 +166,23 @@ router.get("/user/:id", async (req, res) => {
 
 });
 
+router.get("/all/applications/", async (req, res) => {
+  try {
+ 
+   
+    const existinginternship = await Application.find();
+   
+  
+   
+    res.status(201).json(existinginternship);
+  } catch (error) {
+    console.log(error.message);
+    
+    res.status(500).json({ message: "Error  application", error: error.message });
+  }
+
+});
+
 
 
 
