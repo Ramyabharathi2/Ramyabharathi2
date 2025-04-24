@@ -119,6 +119,8 @@ const Navbar = () => {
               <FaUser className="inline-block mr-2" />
               Profile
             </button>
+
+            <button onClick={handleLogout} className="bg-gray-200 text-black py-2 px-6 rounded-full text-sm md:text-base font-semibold hover:bg-blue-500 transition duration-300">Logout</button>
           
             {/* {isProfileMenuOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-10">
