@@ -9,7 +9,7 @@ const PlayQuizPrompt = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowPrompt(true);
-    }, 5000); // 5 seconds
+    }, 50000); // 5 seconds
 
     return () => clearTimeout(timer);
   }, []);
