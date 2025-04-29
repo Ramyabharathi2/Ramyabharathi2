@@ -5,9 +5,10 @@ const EditProfile = () => {
     name: '',
     email: '',
     mobile: '',
-    role: '',
+    skills: [],
   });
 
+  const [newSkill, setNewSkill] = useState('');
   const [passwordData, setPasswordData] = useState({
     oldPassword: '',
     newPassword: '',
@@ -18,14 +19,14 @@ const EditProfile = () => {
   const [message, setMessage] = useState('');
   const [passwordMessage, setPasswordMessage] = useState('');
 
-  // Load existing user data
   useEffect(() => {
-    const fetchData = async () => {
-      // Replace with API call
-      const userData = JSON.parse(localStorage.getItem("userData")) ;
-      setFormData(userData);
-    };
-    fetchData();
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    if (userData) {
+      setFormData({
+        ...userData,
+        skills: userData.skills || [],
+      });
+    }
   }, []);
 
   const handleProfileChange = (e) => {
@@ -38,6 +39,23 @@ const EditProfile = () => {
     setPasswordData(prev => ({ ...prev, [name]: value }));
   };
 
+  const addSkill = () => {
+    if (newSkill.trim() !== '' && !formData.skills.includes(newSkill.trim())) {
+      setFormData(prev => ({
+        ...prev,
+        skills: [...prev.skills, newSkill.trim()]
+      }));
+      setNewSkill('');
+    }
+  };
+
+  const removeSkill = (skillToRemove) => {
+    setFormData(prev => ({
+      ...prev,
+      skills: prev.skills.filter(skill => skill !== skillToRemove)
+    }));
+  };
+
   const submitProfile = async (e) => {
     e.preventDefault();
     setLoadingProfile(true);
@@ -47,10 +65,12 @@ const EditProfile = () => {
       const response = await fetch('http://localhost:5000/update', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
+        const updatedData = await response.json();
+        localStorage.setItem("userData", JSON.stringify(updatedData));
         setMessage('Profile updated successfully!');
       } else {
         setMessage('Failed to update profile.');
@@ -75,7 +95,7 @@ const EditProfile = () => {
           email: formData.email,
           oldPassword: passwordData.oldPassword,
           newPassword: passwordData.newPassword,
-        })
+        }),
       });
 
       if (response.ok) {
@@ -128,7 +148,46 @@ const EditProfile = () => {
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
             />
           </div>
-         
+
+          {/* Skills Tag Input */}
+          <div>
+            <label className="block font-medium text-gray-700 mb-1">Skills</label>
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                value={newSkill}
+                onChange={(e) => setNewSkill(e.target.value)}
+                placeholder="Add a skill"
+                className="flex-grow px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
+              />
+              <button
+                type="button"
+                onClick={addSkill}
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              >
+                Add
+              </button>
+            </div>
+            <div className="flex flex-wrap mt-2 gap-2">
+              {formData.skills.map((skill, index) => (
+                <span
+                  key={index}
+                  className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full flex items-center gap-2"
+                >
+                  {skill}
+                  <button
+                    type="button"
+                    onClick={() => removeSkill(skill)}
+                    className="text-red-500 font-bold"
+                    title="Remove skill"
+                  >
+                    ×
+                  </button>
+                </span>
+              ))}
+            </div>
+          </div>
+
           <div className="text-center">
             <button
               type="submit"

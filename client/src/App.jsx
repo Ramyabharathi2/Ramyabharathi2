@@ -68,7 +68,7 @@ const App = () => {
   return (
     <Router>
       <Navbar />
-      <PlayQuizPrompt/>
+      {/* <PlayQuizPrompt/> */}
       <Chatbot/>
       <Routes>
         <Route path="/" element={<Home />} />

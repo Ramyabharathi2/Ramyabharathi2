@@ -36,7 +36,8 @@ const employeeSchema = new mongoose.Schema({
     email: { type: String, unique: true },
     password: String,
     mobile: String,
-    role:String
+    role:String,
+    skills: [String],
 });
 
 const Employee = mongoose.model('Employee', employeeSchema);
@@ -69,19 +70,20 @@ app.post('/signup', async (req, res) => {
 
 // PUT /api/employee/update
 app.put('/update', async (req, res) => {
-    const { email, name, password, mobile, role } = req.body;
-  
-    try {
-      const updated = await Employee.findOneAndUpdate(
-        { email },
-        { name, password, mobile, role },
-        { new: true }
-      );
-      res.json(updated);
-    } catch (err) {
-      res.status(500).json({ error: 'Update failed' });
-    }
-  });
+  const { email, name, password, mobile, role, skills } = req.body;
+
+  try {
+    const updated = await Employee.findOneAndUpdate(
+      { email },
+      { name, password, mobile, role, skills }, // ✅ Include skills
+      { new: true }
+    );
+    res.json(updated);
+  } catch (err) {
+    res.status(500).json({ error: 'Update failed' });
+  }
+});
+
   
 
   app.post('/update-password', async (req, res) => {
@@ -150,6 +152,10 @@ app.post('/login', async (req, res) => {
 app.use("/api/job", jobRoutes);
 app.use("/api/intern",InternRoutes)
 app.use("/api/addquiz",quiz)
+import interviewRoutes from "./routes/interviewRoutes.js";
+
+// Routes
+app.use("/api/interviews", interviewRoutes);
 
 //   /api/intern/all-intern-applications/
 // Start the server"
